@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+* {
+  font-family: 'Jetbrains Mono', monospace;
+}
+
+:root {
+  --primary: #0070f3;
+  --border: #eaeaea;
+  --shadow: rgba(29, 2, 2, 0.1) 0px 4px 12px;
+  --background: #161616;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+}
+
+/* color animation */
+@keyframes text-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-text-flow {
+  background-size: 200% 200%;
+  animation: text-flow 4s ease infinite;
+}
