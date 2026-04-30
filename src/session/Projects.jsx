@@ -1,11 +1,12 @@
 import React from 'react'
-import MainContent from '../layout/MainContent'
+import MainLayout from '../layout/MainLayout'
 import ProjectCard from '../component/card/ProjectCard'
+import sertif from '/src/assets/myself/certifications/dicoding_sql/sql_2.png'
 
 function Projects() {
     return (
         <div className='text-white'>
-            <MainContent>
+            <MainLayout>
                 {/* batas */}
                 <div className='flex w-full items-center justify-center mb-5'>
                     <div className="grow h-px bg-[#666666]"></div>
@@ -29,7 +30,7 @@ function Projects() {
 
                     <ProjectCard
                         title="Project 1"
-                        image="/path/to/image1.jpg"
+                        image={sertif}
                         link="https://example.com/project1"
                     />
                     <ProjectCard
@@ -49,7 +50,7 @@ function Projects() {
                     />
 
                 </div>
-            </MainContent>
+            </MainLayout>
         </div>
     )
 }

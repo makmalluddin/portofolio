@@ -1,12 +1,13 @@
 import React from 'react'
-import MainContent from '../layout/MainContent'
+import MainLayout from '../layout/MainLayout'
 import SkillCard from '../component/SkillCard'
 import MiniSkills from '../component/card/MiniSkills'
+import avatar from '../assets/myself/avatar.jpg'
 
 function Project() {
   return (
     <div className='text-white'>
-      <MainContent>
+      <MainLayout>
         {/* title */}
         <div className='flex w-full items-center justify-center mb-5'>
           <div className="grow h-px bg-[#666666]"></div>
@@ -17,15 +18,15 @@ function Project() {
         </div>
 
         {/* picture */}
-        <div>
-          gambar
+        <div className='flex items-center justify-center'>
+          <img src={avatar} alt="skills" className='w-80   h-100 object-cover rounded-lg border border-gray-700' />
         </div>
 
         <div className='flex flex-col gap-3'>
           {/* it skills */}
           <div className='flex flex-col gap-2'>
             <div className='text-amber-300'>
-              {'[IT Skills]'}
+              {'[ Skills ]'}
             </div>
 
             <div className='flex gap-5 justify-around'>
@@ -38,10 +39,6 @@ function Project() {
 
           {/* data skills */}
           <div>
-            <div className='text-blue-200'>
-              {'[Data Skills]'}
-            </div>
-
             <div className='flex gap-5 justify-around'>
               <SkillCard />
               <SkillCard />
@@ -65,7 +62,7 @@ function Project() {
           </div>
         </div>
 
-      </MainContent>
+      </MainLayout>
     </div>
   )
 }

@@ -2,23 +2,22 @@ import React from 'react'
 
 function Navbar() {
     return (
-        <nav className='w-full border-b border-gray-600'>
-            <div className='grid grid-cols-3 items-center bg-[#161616] h-20 gap-20 max-w-7xl mx-auto sm:px-6 lg:px-8'>
-                <div className='flex justify-start text-white'> {"</udin>"} </div>
+        <nav className='navbar fixed flex z-50 w-full'>
+            <div className='flex justify-between max-w-7xl w-full items-center bg-[#161616] h-20 gap-auto mx-auto'>
+                <div className='flex font-mono justify-start max-w-xl text-white text-lg'> {"</udin>"} </div>
 
-                <div className='flex justify-center text-white'>
-                    <ul className='flex gap-10'>
-                        <li>experience</li>
-                        <li>skills</li>
-                        <li>projects</li>
-                        <li>contact</li>
-                    </ul>
-                </div>
+                <ul className='flex gap-10 text-white items-center justify-center uppercase text-sm tracking-[0.3em]'>
+                    <li>experience</li>
+                    <li>skills</li>
+                    <li>projects</li>
+                    <li>contact</li>
+                </ul>
 
-                <div className='flex justify-end text-white'>open to work</div>
+                <div className='flex justify-center text-white'>open to work</div>
             </div>
         </nav>
-    ) 
+
+    )
 }
 
 export default Navbar
