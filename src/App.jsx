@@ -3,24 +3,25 @@ import Navbar from './component/Navbar'
 import Navbarr from './component/Navbarr'
 import Main from './session/Main'
 import Experience from './session/Experience'
-import CertificationCard from './component/CertificationCard'
 import Skills from './session/Skills'
 import Projects from './session/Projects'
 import Contact from './session/Contact'
-import Background from './session/Background'
 import BigContent from './layout/BigContent'
+import Background from './session/Background'
+import Footer from './session/Footer'
+
 
 function App() {
   return (
-    <div>
+    <div >
       <BigContent>
-        <Navbarr />
+        <Navbar />
         <Main />
         <Experience />
         <Skills />
         <Projects />
         <Contact />
-        <Background />
+        <Footer/>
       </BigContent>
     </div>
   )

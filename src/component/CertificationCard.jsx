@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react';
 
-function CertificationCard({ title, provider, date, onHover, id }) {
+const CertificationCard = memo(({ title, provider, date, onHover, id }) => {
     return (
         <div 
             onMouseEnter={() => onHover(id)}
-            className="group flex flex-col p-4 border-l-2 border-gray-800 hover:border-amber-400 hover:bg-white/5 transition-all duration-300 cursor-crosshair"
+            onMouseLeave={() => onHover(null)}
+            className="group flex flex-col p-4 border-l-2 border-gray-800 hover:border-amber-400 hover:bg-white/5 transition-all duration-300 cursor-crosshair text-left"
         >
             <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest group-hover:text-amber-500">
                 {provider} — {date}
@@ -13,7 +14,7 @@ function CertificationCard({ title, provider, date, onHover, id }) {
                 {title}
             </h3>
         </div>
-    )
-}
+    );
+});
 
-export default CertificationCard
+export default CertificationCard;
