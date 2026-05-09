@@ -35,14 +35,16 @@ const ExperienceCard = memo(({ job, color, company, date, description, type, onC
                 {/* Description UI */}
                 <div className="flex flex-col gap-2 py-1 w-full text-left">
                     <div className='flex justify-between items-center'>
-                        <div className={`text-2xl font-bold transition-colors ${isActive ? textVariants[color] : 'text-white'}`}>
+                        <div className={`text-[2rem] font-bold transition-colors ${isActive ? textVariants[color] : 'text-white'}`}>
                             {job}
                         </div>
-                        <div className='text-gray-400 text-sm font-mono tracking-widest'>
+                        <div className='text-gray-300 text-lg font-mono tracking-widest'>
                             {date}
                         </div>
                     </div>
-                    <div className={`${textVariants[color]} text-sm italic`}>{company}</div>
+                    <div className={`${textVariants[color]} text-xl tracking-wider italic`}>
+                        {company}
+                    </div>
                     <div className='max-w-xl text-gray-400 text-sm leading-relaxed'>
                         {description}
                     </div>
@@ -51,14 +53,14 @@ const ExperienceCard = memo(({ job, color, company, date, description, type, onC
                             {type}
                         </div>
 
-                        <div  onClick={onClick} className={`flex  cursor-pointer text-sm relative group items-end gap-2 ${textVariants[color]} opacity-40 hover:${textVariants[color]} hover:opacity-80`}>
+                        <div onClick={onClick} className={`flex  cursor-pointer text-sm relative group items-end gap-2 ${textVariants[color]} opacity-40 hover:${textVariants[color]} hover:opacity-80`}>
                             details
                             <span className='flex text-xl justify-end items-start transition-all duration-200 rotate-90 group-hover:rotate-135'>
                                 <Icon icon="solar:arrow-up-linear" />
                             </span>
 
-                        <span className={`absolute -bottom-1 left-0 w-0 h-px ${colorVariants[color]} transition-all duration-200 group-hover:w-full`}>
-                        </span>
+                            <span className={`absolute -bottom-1 left-0 w-0 h-px ${colorVariants[color]} transition-all duration-200 group-hover:w-full`}>
+                            </span>
                         </div>
                     </div>
                 </div>

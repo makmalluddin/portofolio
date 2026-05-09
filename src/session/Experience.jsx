@@ -112,7 +112,7 @@ function Experience() {
                     viewport={{ once: true, amount: 0.8 }}
                     className='flex items-center mb-10'
                 >
-                    <span className="mr-6 text-amber-400 font-mono italic">01. _experience</span>
+                    <span className="mr-6 text-amber-400 font-mono text-lg italic">01. Experience</span>
                     <div className="grow h-px bg-gray-800"></div>
                 </motion.div>
 
@@ -122,7 +122,7 @@ function Experience() {
                     initial='hidden'
                     whileInView='visible'
                     viewport={{ once: true, amount: 0.6 }}
-                    className="space-y-4 mb-32"
+                    className="space-y-4 mb-32 "
                 >
                     {experienceData.map((exp) => (
                         <ExperienceCard

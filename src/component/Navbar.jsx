@@ -51,14 +51,14 @@ function Navbar() {
                 </ul>
 
                 {/* 4. Open to Work dengan Efek Breath */}
-                <div className="flex items-center gap-3 px-2 py-1.5 border border-emerald-500/30 bg-emerald-500/5 rounded-full">
-                    <div className="relative flex h-2.5 w-2.5">
+                <div className="flex items-center gap-3 px-2 py-1.5  bg-emerald-500/5 rounded-full">
+                    <div className="relative flex h-4 w-4">
                         {/* Efek Radar/Ping */}
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         {/* Titik Inti */}
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                     </div>
-                    <span className="text-[10px] font-mono font-medium tracking-wider text-emerald-400 uppercase">
+                    <span className="text-md font-mono font-bold tracking-wider text-emerald-400 uppercase">
                         Open to work
                     </span>
                 </div>
