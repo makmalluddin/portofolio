@@ -1,7 +1,4 @@
 import React from 'react'
-import { FaReact, FaLaravel, FaPython, FaDatabase, FaGitAlt, FaBrain, FaGit } from "react-icons/fa";
-import { SiScikitlearn, SiPostgresql, SiMysql, SiTailwindcss } from "react-icons/si";
-import { IoLogoTableau } from "react-icons/io5";
 import { Icon } from "@iconify/react";
 
 function SkillCard({ name, level = 3, icon, color }) {

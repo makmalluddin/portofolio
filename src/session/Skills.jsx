@@ -1,9 +1,9 @@
 import React from 'react'
 import MainLayout from '../layout/MainLayout'
-import SkillCard from '../component/SkillCard'
-import MiniSkills from '../component/MiniSkills'
+import SkillCard from '../component/card/SkillCard'
+import MiniSkills from '../component/card/MiniSkills'
 import { motion } from 'motion/react'
-import avatar from '../assets/myself/avatar.jpg'
+import avatar from '../assets/myself/avatar.webp'
 
 function Skills() {
   const softSkills = [
@@ -32,11 +32,13 @@ function Skills() {
     { name: 'VS Code', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
     { name: 'Kicad', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
     { name: 'Autocad', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
+    { name: 'Figma', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
     { name: 'LTSpice', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
     { name: 'Fedora', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
     { name: 'Debian', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
     { name: 'Pandas', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
     { name: 'Matplotlib', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
+    { name: 'Draw.io', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
   ]
 
   const title = {

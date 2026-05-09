@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from "motion/react"
-import VariableProximity from '/components/VariableProximity';
 
 function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -26,27 +24,19 @@ function Navbar() {
     ];
 
     return (
-        <nav className={`fixed top-0 flex z-50 w-full transition-all duration-500 ${isScrolled ? 'h-16 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-800' : 'h-24 bg-transparent'}`}>
+        <nav className={`fixed top-0 flex z-50 w-full text-md transition-all duration-500 ${isScrolled ? 'h-16 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-800' : 'h-24 bg-transparent'}`}>
             <div className='flex justify-between max-w-7xl w-full items-center px-6 lg:px-8 mx-auto'>
 
                 {/* Udin Text */}
                 <div className='flex font-mono justify-start cursor-pointer group'>
                     <a href="#" className="relative">
-                        <VariableProximity
-                            label="</udin>"
-                            fromFontVariationSettings="'wght' 400, 'opsz' 9"
-                            toFontVariationSettings="'wght' 900, 'opsz' 40"
-                            containerRef={{ current: document.body }}
-                            radius={100}
-                            falloff="linear"
-                            className="text-white text-xl font-black tracking-tighter"
-                        />
+                        {'</UDN>'}
                         <div className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all group-hover:w-full"></div>
                     </a>
                 </div>
 
                 {/* 3 & 5. Menu Navigasi dengan Anchor Links */}
-                <ul className='hidden md:flex gap-10 text-white items-center justify-center uppercase text-[10px] font-mono tracking-[0.3em]'>
+                <ul className='hidden md:flex gap-10 text-white items-center justify-center uppercase font-mono tracking-[0.3em]'>
                     {navLinks.map((link) => (
                         <li key={link.name}>
                             <a

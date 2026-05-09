@@ -2,17 +2,55 @@ import React from 'react'
 import MainLayout from '../layout/MainLayout'
 import ProjectCard from '../component/card/ProjectCard'
 import { motion } from 'motion/react'
-import sertif from '/src/assets/myself/certifications/dicoding_sql/sql_2.png'
-import finance from '/src/assets/myself/projects/finance_app/finance.jpeg'
+import delivery from '/src/assets/myself/projects/delivery.webp'
+import monitoring from '/src/assets/myself/projects/monitoring.webp'
+import volatile from '/src/assets/myself/projects/volatile.webp'
+import ozon from '/src/assets/myself/projects/ozon.webp'
 
 function Projects() {
     const projectList = [
-        {id : 1, title: "Delivery Time Accuracy Prediction", image: 'asdf/asdf', link:'asdf/asdf'},
-        {id : 2, title: "Classification Volatile Compound", image: 'asdf/asdf', link:'asdf/asdf'},
-        {id : 3, title: "Ozon Level Detection", image: 'asdf/asdf', link:'asdf/asdf'},
-        {id : 4, title: "Revamp Company Website", image: 'asdf/asdf', link:'asdf/asdf'},
+        {
+            id: 1,
+            title: "Delivery Time Accuracy Prediction",
+            image: delivery,
+            link: 'asdf/asdf',
+            type: 'Data',
+            description: 'ini adalah percobaan',
+            tools: ['React, Json'],
+            overlayMode: 'light'
+        },
+        {
+            id: 2,
+            title: "Ship Monitoring",
+            image: monitoring,
+            link: 'asdf/asdf',
+            type: 'Data',
+            description: 'ini adalah percobaan',
+            tools: ['React, Json'],
+            overlayMode: 'dark'
+        },
+        {
+            id: 3,
+            title: "Classification of Volatile Compound",
+            image: volatile,
+            link: 'asdf/asdf',
+            type: 'Data',
+            description: '',
+            tools: ['React, Json'],
+            overlayMode: 'dark'
+        },
+        {
+            id: 4,
+            title: "Ozon Level Detection",
+            image: ozon,
+            link: 'https://github.com/makmalluddin/ozon-detection',
+            type: 'Data',
+            description: 'ini adalah percobaan',
+            tools: ['React, Json'],
+            overlayMode: 'light'
+        },
+        
     ]
-
 
     const title = {
         hidden: { opacity: 0, x: 30 },
@@ -67,7 +105,7 @@ function Projects() {
     };
 
     return (
-        <section id='projects' className='min-h-screen flex items-center justify-center text-white'>
+        <section id='projects' className='min-h-screen flex items-center justify-center text-white gap-2'>
             <MainLayout>
                 {/* Section Title */}
                 <motion.div
@@ -77,9 +115,9 @@ function Projects() {
                     viewport={{ once: true, amount: 0.9 }}
                     className='flex items-center mb-20'
                 >
-                    <div className="grow h-px bg-gray-800"></div>
+                    <div className="grow h-px bg-gray-800" />
                     <span className="mx-6 text-amber-400 font-mono italic">04. _/projects</span>
-                    <div className="grow h-px bg-gray-800"></div>
+                    <div className="grow h-px bg-gray-800" />
                 </motion.div>
 
                 {/* project */}
@@ -88,37 +126,13 @@ function Projects() {
                     initial='hidden'
                     whileInView='visible'
                     viewport={{ once: true, amount: 0.5 }}
-                    className='grid grid-cols-2'
+                    className='grid grid-cols-2 gap-1'
                 >
-                    {/* project list */}
-                    <motion.div variants={itemVariants}>
-                        <ProjectCard
-                            title="Revamp Main Website"
-                            image={sertif}
-                            link="https://example.com/project1"
-                        />
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <ProjectCard
-                            title="My Finance App"
-                            image={finance}
-                            link="https://example.com/project1"
-                        />
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <ProjectCard
-                            title="Project 1"
-                            image={finance}
-                            link="https://example.com/project1"
-                        />
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <ProjectCard
-                            title="Project 1"
-                            image={sertif}
-                            link="https://example.com/project1"
-                        />
-                    </motion.div>
+                    {projectList.map((proje) => (
+                        <motion.div key={proje.id} variants={itemVariants}>
+                            <ProjectCard {...proje} />
+                        </motion.div>
+                    ))}
 
                 </motion.div>
             </MainLayout>

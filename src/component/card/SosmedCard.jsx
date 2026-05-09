@@ -1,5 +1,4 @@
 import React from 'react'
-import { FaLinkedin, FaGithub, FaWhatsapp, FaInstagram } from 'react-icons/fa'
 import { Icon } from '@iconify/react'
 
 function SosmedCard({  name, icon, bordercol, link }) {

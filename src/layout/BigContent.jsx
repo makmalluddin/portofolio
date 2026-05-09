@@ -7,7 +7,7 @@ function BigContent({ children }) {
       <div className='absolute inset-0 z-0'>
         <Particles
           particleColors={["#ffffff"]}
-          particleCount={1000}
+          particleCount={500}
           particleSpread={5}
           speed={0.1}
           particleBaseSize={100}

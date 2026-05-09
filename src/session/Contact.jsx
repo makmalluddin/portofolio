@@ -3,7 +3,7 @@ import { motion } from "framer-motion" // Gunakan framer-motion untuk konsistens
 import MainLayout from '../layout/MainLayout'
 import { Icon } from '@iconify/react'
 import CircularText from '/components/CircularText'
-import SosmedCard from '../component/SosmedCard'
+import SosmedCard from '../component/card/SosmedCard'
 
 function Contact() {
     const socialMedia = [
@@ -38,7 +38,7 @@ function Contact() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     className="w-full flex flex-col gap-20"
                 >
                     {/* Marker Header */}

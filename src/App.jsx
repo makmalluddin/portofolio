@@ -1,19 +1,20 @@
 import React from 'react'
-import Navbar from './component/Navbar'
-import Navbarr from './component/Navbarr'
-import Main from './session/Main'
-import Experience from './session/Experience'
-import Skills from './session/Skills'
-import Projects from './session/Projects'
-import Contact from './session/Contact'
-import BigContent from './layout/BigContent'
-import Background from './session/Background'
-import Footer from './session/Footer'
+import { Suspense, lazy } from 'react';
+
+const Navbar = lazy(() => import('./component/Navbar'));
+const Main = lazy(() => import('./session/Main'));
+const Experience = lazy(() => import('./session/Experience'));
+const Skills = lazy(() => import('./session/Skills'));
+const Projects = lazy(() => import('./session/Projects'));
+const Contact = lazy(() => import('./session/Contact'));
+const BigContent = lazy(() => import('./layout/BigContent'));
+const Footer = lazy(() => import('./session/Footer'));
 
 
 function App() {
   return (
     <div >
+      <Suspense fallback={<div className="h-screen bg-black" />}/>
       <BigContent>
         <Navbar />
         <Main />

@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import CircularGallery from '/components/CircularGallery';
 import { Icon } from "@iconify/react";
 
-// Membungkus dengan memo untuk mencegah re-render yang tidak perlu
 const ExperienceCard = memo(({ job, color, company, date, description, type, onClick, isActive, images }) => {
 
     const colorVariants = {
@@ -23,8 +22,7 @@ const ExperienceCard = memo(({ job, color, company, date, description, type, onC
     return (
         <div className="flex flex-col mb-4">
             <div
-                onClick={onClick}
-                className={`flex items-start gap-5 cursor-pointer transition-all duration-300 p-2 rounded-lg ${isActive ? 'bg-white/5' : 'hover:bg-white/5'}`}
+                className={`flex items-start gap-5 transition-all duration-300 p-2 rounded-lg ${isActive ? 'bg-white/5' : 'hover:bg-white/5'}`}
             >
                 {/* Line UI */}
                 <div className="flex flex-col items-center w-10">
@@ -53,22 +51,20 @@ const ExperienceCard = memo(({ job, color, company, date, description, type, onC
                             {type}
                         </div>
 
-                        <div className={`flex text-sm relative group items-end gap-2 ${textVariants[color]} opacity-40 hover:${textVariants[color]} hover:opacity-80`}>
+                        <div  onClick={onClick} className={`flex  cursor-pointer text-sm relative group items-end gap-2 ${textVariants[color]} opacity-40 hover:${textVariants[color]} hover:opacity-80`}>
                             details
-                            <span className='flex text-xl justify-end items-start rotate-135'>
+                            <span className='flex text-xl justify-end items-start transition-all duration-200 rotate-90 group-hover:rotate-135'>
                                 <Icon icon="solar:arrow-up-linear" />
                             </span>
 
                         <span className={`absolute -bottom-1 left-0 w-0 h-px ${colorVariants[color]} transition-all duration-200 group-hover:w-full`}>
                         </span>
-
-                            
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Galeri di dalam kartu namun hanya dimuat saat aktif */}
+            {/* Galery Experience */}
             {isActive && (
                 <div className='ml-14 mt-4 border border-gray-800 rounded-xl bg-[#0f0f0f] overflow-hidden'
                     style={{ height: '400px', position: 'relative' }}>

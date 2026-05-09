@@ -1,13 +1,15 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import ExperienceCard from '../component/ExperienceCard';
-import CertificationCard from '../component/CertificationCard';
+import ExperienceCard from '../component/card/ExperienceCard';
+import CertificationCard from '../component/card/CertificationCard';
 import MainLayout from '../layout/MainLayout';
 import { motion } from "motion/react";
-import sertif from '/src/assets/myself/certifications/bnsp/bnsp_1.png'
-import sertif2 from '/src/assets/myself/certifications/bnsp/bnsp_2.png'
-import sql1 from '/src/assets/myself/certifications/dicoding_sql/sql_1.png'
-import sql2 from '/src/assets/myself/certifications/dicoding_sql/sql_2.png'
-import sql3 from '/src/assets/myself/certifications/dicoding_sql/sql_3.png'
+import bnsp from '/src/assets/myself/certifications/bnsp.webp'
+import dicoding from '/src/assets/myself/certifications/dicoding.webp'
+import revou from '/src/assets/myself/certifications/revou.webp'
+import stupen from '/src/assets/myself/certifications/stupen.webp'
+import xquisite from '/src/assets/myself/certifications/xquisite.webp'
+import { ais_rec, analytics, instalation_ais, instalation_antena, presentation, website } from '../component/Experience2';
+import { presentation3, cms3, coding3, dashboard3, workspace } from '../component/Experience3';
 
 function Experience() {
     const [activeExpId, setActiveExpId] = useState(null);
@@ -19,38 +21,43 @@ function Experience() {
             id: 1, job: "IT Assistant", company: "PT. Dwitunggal Jaya Pratama Maju", date: "Dec 2025 - Now", color:"text-amber-400",
             description: "Focused on digitalizing company services through modernizing the main website architecture and developing an e-commerce platform to make it easier for clients to order our services, resulting in a 30% increase in website traffic",  color:'amber',
             type: "Intern", images: [
-                { image: sertif, text: 'Dev Process' },
-                { image: sertif2, text: 'UI Result' },
-                { image: 'link_foto_3.jpg', text: 'System Arch' },
+                { image: presentation3, text: 'Presentation Project' },   
+                { image: dashboard3, text: 'Revamped Website' },
+                { image: coding3, text: 'Developing Website' },
+                { image: cms3, text: 'CMS Dashboard' },
+                { image: workspace, text: 'Workspace' },
             ]
         },
         {
             id: 2, job: "Technical Support", company: "PT. IndoMega Teknologi", date: "Feb 2024 - June 2024",
             description: "Played a role in developing an operational monitoring website that successfully monitored over 120 vessels and 5 aircraft by building a visualization platform and managing vessel anomaly data to support the company's strategic solutions", color:'amber',
             type: "Intern", images: [
-                { image: sql1, text: 'Dev Process' },
-                { image: sql2, text: 'UI Result' },
-                { image: sql3, text: 'System Arch' },
+                { image: ais_rec, text: 'AIS Receiver' },
+                { image: instalation_ais, text: 'Installation AIS' },
+                { image: instalation_antena , text: 'Installation Antena' },
+                { image: website , text: 'Monitoring Website' },
+                { image: presentation , text: 'Presentation Project' },
+                { image: analytics , text: 'Analytics Missing Data' },
             ]
         },
         {
             id: 3, job: "Java & Python For Data Science", company: "PT. Tata Informasi Asia", date: "Sep 2024 - Dec 2024",
             description: "Developed Java & Python skills through a goods delivery prediction project with Spring Boot integration as the backend and a Random Forest predictive model that successfully achieved 97% accuracy", color:'cyan',
             type: "Training", images: [
-                { image: sql1, text: 'Dev Process' },
-                { image: sql2, text: 'UI Result' },
-                { image: sql3, text: 'System Arch' },
+                { image: stupen, text: 'Dev Process' },
+                { image: xquisite, text: 'UI Result' },
+                { image: revou , text: 'System Arch' },
             ]
         },
     ], []);
 
     // Certification Data
     const certificationData = useMemo(() => [
-        { id: 1, title: "Intro To Software Engineering", provider: "RevoU", date: "2026", image: sertif },
-        { id: 2, title: "Introduction To SQL", provider: "Dicoding", date: "2025", image: sql2 },
-        { id: 3, title: "Associate Data Scientist", provider: "BNSP", date: "2025", image: sertif },
-        { id: 4, title: "Java & Python For Data Science", provider: "TIA Academy", date: "2024", image: sql2 },
-        { id: 5, title: "Data Analytics Training", provider: "Xquisite AI", date: "2023", image: sql2 },
+        { id: 1, title: "Intro To Software Engineering", provider: "RevoU", date: "2026", image: revou },
+        { id: 2, title: "Introduction To SQL", provider: "Dicoding", date: "2025", image: dicoding },
+        { id: 3, title: "Associate Data Scientist", provider: "BNSP", date: "2025", image: bnsp },
+        { id: 4, title: "Java & Python For Data Science", provider: "TIA Academy", date: "2024", image: stupen },
+        { id: 5, title: "Data Analytics Training", provider: "Xquisite AI", date: "2023", image: xquisite },
     ], []);
 
     // useCallBack
@@ -176,8 +183,8 @@ function Experience() {
                                     className="w-full h-full object-contain p-4 transition-opacity duration-300"
                                 />
                             ) : (
-                                <div className="flex flex-col items-center gap-3 text-gray-600 font-mono text-sm animate-pulse">
-                                    <div className="w-10 h-10 border border-dashed border-gray-700 flex items-center justify-center">
+                                <div className="flex flex-col items-center gap-3 text-gray-300 font-mono text-sm animate-pulse">
+                                    <div className="w-10 h-10 border border-dashed border-gray-300 flex items-center justify-center">
                                         ?
                                     </div>
                                     <span>[ HOVER_CERTIFICATION_FOR_DETAILS ]</span>

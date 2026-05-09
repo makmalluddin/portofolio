@@ -154,3 +154,24 @@ body {
     @apply font-mono;
   }
 }
+
+/* Heading 1 (Nama atau Judul Utama) */
+h1 {
+  font-size: 3rem; /* Sekitar 48px */
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+/* Heading 2 (Judul Section: Projects, Experience) */
+h2 {
+  font-size: 2rem; /* Sekitar 32px */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* Paragraph (Teks Deskripsi) */
+p {
+  font-size: 1.3rem; /* 18px - Sesuai saran untuk keterbacaan HRD 26+ */
+  line-height: 1.6;
+  color: var(--text-secondary); /* Gunakan variabel agar konsisten */
+}
