@@ -1,16 +1,26 @@
+/* CertificationCard.jsx */
 import React, { memo } from 'react';
 
-const CertificationCard = memo(({ title, provider, date, onHover, id }) => {
+const CertificationCard = memo(({ title, provider, date, onHover, id, isActive }) => {
     return (
         <div 
             onMouseEnter={() => onHover(id)}
-            onMouseLeave={() => onHover(null)}
-            className="group flex flex-col p-4 border-l-2 border-gray-800 hover:border-amber-400 hover:bg-white/5 transition-all duration-300 cursor-crosshair text-left"
+            onMouseLeave={() => {}} 
+            className={`flex flex-col p-4 border-l-2 transition-all duration-300 cursor-crosshair text-left
+                ${isActive 
+                    ? 'border-amber-400 bg-white/10' // Style saat AKTIF (Menyala Permanen)
+                    : 'border-gray-800 hover:border-gray-600 hover:bg-white/5' // Style saat MATI
+                }`}
         >
-            <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest group-hover:text-amber-500">
+            {/* Teks Provider */}
+            <span className={`text-md font-mono uppercase tracking-widest transition-colors duration-300
+                ${isActive ? 'text-amber-500' : 'text-gray-400'}`}>
                 {provider} — {date}
             </span>
-            <h3 className="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">
+
+            {/* Judul Sertifikat */}
+            <h3 className={`text-xl font-bold transition-colors duration-300
+                ${isActive ? 'text-white' : 'text-gray-300'}`}>
                 {title}
             </h3>
         </div>
