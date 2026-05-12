@@ -16,11 +16,11 @@ function NewProjects() {
             description: 'Built a delivery time prediction model using Random Forest algorithm based on shipping factors, achieving 97% accuracy',
             tools: [
                 {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
+                {icon : 'bxl:spring-boot', name:'spring boot'},
             ],
             type: 'DS',
-            color: 'amber'
+            color: 'amber',
+            onclick: 'https://github.com/makmalluddin/shipping-prediction'
         },
         {
             id: 2,
@@ -29,11 +29,12 @@ function NewProjects() {
             description: 'Developed a classification system to distinguish two volatile compounds using sensor measurement data, achieving 95% accuracy',
             tools: [
                 {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
+                {icon : 'skill-icons:arduino', name:'arduino'},
+                {icon : 'arcticons:sensor-lab', name:'sensor'},
             ],
-            type: 'DS',
-            color: 'amber'
+            type: 'ML',
+            color: 'amber',
+            onclick: 'https://github.com/makmalluddin/chromatography-gas'
         },
         {
             id: 3,
@@ -41,12 +42,13 @@ function NewProjects() {
             title: 'Company Website Revamp',
             description: 'Revamped company website design and developed an e-commerce platform, resulting in a 30% increase in website traffic',
             tools: [
-                {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
+                {icon : 'devicon:react', name:'react'},
+                {icon : 'devicon:laravel', name:'laravel'},
+                {icon : 'devicon:tailwindcss', name:'tailwind'},
             ],
-            type: 'DS',
-            color: 'amber'
+            type: 'Web',
+            color: 'cyan',
+            onclick: 'https://github.com/sg8group/fe-sg8group'
         },
         {
             id: 4,
@@ -54,12 +56,13 @@ function NewProjects() {
             title: 'Air & Maritime Traffic Monitoring',
             description: 'Built a monitoring and visualization system to track over 120 vessels around Tanjung Priok Port and 5 aircraft trajectories using an interactive web platform',
             tools: [
-                {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
-                {icon : 'devicon:python', name:'python'},
+                {icon : 'devicon:javascript', name:'javascript'},
+                {icon : 'devicon:mongodb', name:'mongodb'},
+                {icon : 'logos:raspberry-pi', name:'raspberry pi'},
             ],
-            type: 'DS',
-            color: 'amber'
+            type: 'Web',
+            color: 'cyan',
+            onclick: 'https://github.com/makmalluddin/ship-ais'
         },
 
     ]
