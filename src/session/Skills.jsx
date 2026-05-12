@@ -15,14 +15,18 @@ function Skills() {
     { name: "Leadership", top: "50%", left: "80%" },
   ];
 
-  const techStack = [
+  const techStack1 = [
     { name: 'Python', level: '5', icon: 'python', color:'text-[#3776AB]' },
     { name: 'Scikit-Learn', level: '4', icon: 'sklearn' },
     { name: 'Tableau', level: '4', icon: 'tableau' },
-    { name: 'PostgreSQL', level: '3', icon: 'db' },
+    { name: 'MySql', level: '4', icon: 'db' },
+
+  ]
+  const techStack2 = [
     { name: 'React', level: '4', icon: 'react' },
     { name: 'Laravel', level: '2', icon: 'laravel' },
     { name: 'Tailwind', level: '4', icon: 'tailwind' },
+    { name: 'PostgreSQL', level: '3', icon: 'db' },
     { name: 'Git', level: '4', icon: 'git' }
   ]
 
@@ -102,61 +106,39 @@ function Skills() {
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true, amount: 0.9 }}
-          className='flex items-center'
+          className='flex items-center mb-10'
         >
           <div className="grow h-px bg-gray-800"></div>
-          <span className="mx-6 text-amber-400 font-mono italic">03. skills</span>
+          <span className="mx-6 text-amber-400 font-mono text-lg italic">03. skills</span>
           <div className="grow h-px bg-gray-800"></div>
         </motion.div>
 
-        {/* Hero Section */}
-        <motion.div
-          variants={containerVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.5 }}
-          className='relative flex justify-center items-center h-140'
-        >
+        {/* Data Skills */}
+        <div className='flex flex-col gap-16 text-left'>
           <motion.div
-            variants={centerImageVariants}
+            variants={containerVariants}
             initial='hidden'
             whileInView='visible'
-            viewport={{ once: true, amount: 0.8 }}
-            className='relative z-10'
+            viewport={{ once: true, amount: 0.5 }}
+            className='space-y-8'
           >
+            <motion.div variants={itemVariants} className='text-amber-400 font-mono'>
+              {'[ Data Science ]'}
+            </motion.div>
 
-            <img
-              src={avatar}
-              alt="Akmal"
-              className='w-64 h-80 object-cover rounded-2xl border-2 border-gray-800 shadow-2xl transition-transform duration-500 hover:scale-105'
-            />
-            <div className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-amber-400"></div>
-            <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-amber-400"></div>
+            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6'>
+              {techStack1.map((items, index) => (
+                <motion.div
+                  variants={itemVariants}
+                >
+                  <SkillCard {...items} />
+                </motion.div>
+              ))}
+            </div>
+
           </motion.div>
 
-          {/* Soft Skills  */}
-          {softSkills.map((skill, index) => (
-            <motion.div
-              variants={leftEntrance}
-              initial='hidden'
-              whileInView='visible'
-              viewport={{ once: true, amount: 0.8 }}
-              key={index}
-              className="absolute z-20 px-4 py-2 bg-[#111]/80 backdrop-blur-md border border-gray-700 rounded-lg text-md font-mono text-amber-400 animate-bounce"
-              style={{
-                top: skill.top,
-                left: skill.left,
-                animationDuration: `${3 + (index % 3)}s`,
-                boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
-              }}
-            >
-              {`> ${skill.name}`}
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Technical Skills Grouping */}
-        <div className='flex flex-col gap-16 text-left'>
+          {/* IT Skills */}
           <motion.div
             variants={containerVariants}
             initial='hidden'
@@ -169,7 +151,7 @@ function Skills() {
             </motion.div>
 
             <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6'>
-              {techStack.map((items, index) => (
+              {techStack2.map((items, index) => (
                 <motion.div
                   variants={itemVariants}
                 >

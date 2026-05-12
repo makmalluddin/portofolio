@@ -126,7 +126,7 @@ function Experience() {
                     viewport={{ once: true, amount: 0.8 }}
                     className='flex items-center mb-10'
                 >
-                    <span className="mr-6 text-amber-400 font-mono text-lg italic">01. Experience</span>
+                    <span className="mr-6 text-amber-400 font-mono text-lg italic">01. My Experience</span>
                     <div className="grow h-px bg-gray-800"></div>
                 </motion.div>
 
@@ -157,7 +157,7 @@ function Experience() {
                     className='flex items-center mb-10'
                 >
                     <div className="grow h-px bg-gray-800"></div>
-                    <span className="ml-6 text-amber-400 font-mono italic">02. /credentials</span>
+                    <span className="ml-6 text-amber-400 font-mono text-lg italic">02. My Certification</span>
                 </motion.div>
 
                 {/* Certification List */}

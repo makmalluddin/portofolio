@@ -1,5 +1,7 @@
 import React from 'react'
 import { Suspense, lazy } from 'react';
+import NewSkills from './session/NewSkills';
+import NewProjects from './session/NewProjects';
 
 const Navbar = lazy(() => import('./component/Navbar'));
 const Main = lazy(() => import('./session/Main'));
@@ -19,8 +21,10 @@ function App() {
         <Navbar />
         <Main />
         <Experience />
-        <Skills />
-        <Projects />
+        
+        <NewSkills />
+        <NewProjects/>
+
         <Contact />
         <Footer/>
       </BigContent>

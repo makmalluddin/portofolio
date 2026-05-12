@@ -30,7 +30,7 @@ function Navbar() {
                 {/* Udin Text */}
                 <div className='flex font-mono justify-start cursor-pointer group'>
                     <a href="#" className="relative">
-                        {'</UDN>'}
+                        {'</UDiiiiN>'}
                         <div className="absolute -bottom-1 left-0 w-0 h-px bg-amber-400 transition-all group-hover:w-full"></div>
                     </a>
                 </div>

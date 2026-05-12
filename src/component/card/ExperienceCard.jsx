@@ -47,7 +47,7 @@ const ExperienceCard = memo(({ job, color, company, date, details, expertise, ty
                 <div className="flex flex-col gap-2 py-1 w-full text-left">
                     <div className='flex justify-between items-center'>
                         <div className='flex flex-col items-start'>
-                            <div className={`text-[2rem] font-bold transition-colors ${isActive ? textVariants[color] : 'text-white/80'}`}>
+                            <div className={`text-[24px] font-bold transition-colors ${isActive ? textVariants[color] : 'text-white/80'}`}>
                                 {job}
                             </div>
                             <div className='text-gray-300 text-lg font-mono tracking-widest'>
