@@ -50,7 +50,7 @@ const SkillOption = memo(({ title, color, categories }) => {
                     icon={skill.icon} 
                     className={`text-xl ${skill.iconClass || ""} opacity-70`} 
                   />
-                  <span className="text-white text-md group-hover:text-white transition-colors">
+                  <span className="text-white text-lg group-hover:text-white transition-colors">
                     {skill.name}
                   </span>
                 </div>
