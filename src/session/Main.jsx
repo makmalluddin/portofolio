@@ -28,7 +28,7 @@ function Main() {
   };
 
   return (
-    <div className='relative flex flex-col w-full min-h-screen scroll-mt-10 items-center justify-center text-white overflow-hidden bg-transparent'>
+    <section id='main' className='relative flex flex-col w-full min-h-screen scroll-mt-10 items-center justify-center text-white overflow-hidden bg-transparent'>
       {/* Version Website */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -50,8 +50,8 @@ function Main() {
         </div>
       </motion.div>
 
-      <div className='flex flex-col max-w-7xl mx-auto sm:px-6 lg:px-8 z-10 w-full'>
-        <div className='flex flex-col mt-30 lg:flex-row lg:mt-0 items-center justify-center gap-10 lg:gap-20 my-10'>
+      <div className='flex flex-col max-w-7xl mx-auto sm:px-6 lg:px-8 z-10 w-full gap-10'>
+        <div className='flex flex-col lg:flex-row lg:mt-0 items-center justify-center gap-10 lg:gap-20'>
 
           {/* Avatar Image */}
           <motion.div
@@ -72,14 +72,14 @@ function Main() {
             className='relative flex justify-center md:justify-center group'
           >
             <div
-              className="absolute w-70 h-80 lg:w-80 lg:h-100 border border-yellow-500/80 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6 duration-700"
+              className="absolute w-70 h-80 lg:w-60 lg:h-75 border border-yellow-500/80 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6 duration-700"
               style={bevelStyle}
             ></div>
 
             <img
               src={avatar}
               alt="avatar"
-              className='w-70 h-80 lg:w-80 lg:h-100 object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative z-10'
+              className='w-70 h-80 lg:w-60 lg:h-75 object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative z-10'
               style={bevelStyle}
               fetchPriority='high'
             />
@@ -90,10 +90,10 @@ function Main() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className='flex flex-col justify-start gap-4 text-center md:text-left'
+            className='flex flex-col justify-start gap-2 text-center md:text-left'
           >
             <motion.div variants={itemVariants} className='space-y-1'>
-              <h1 className='text-4xl lg:text-6xl font-black tracking-tight uppercase leading-tight'>
+              <h1 className='text-2xl lg:text-5xl font-black tracking-tight uppercase leading-tight'>
                 Muhammad <br /> Akmalluddin
               </h1>
             </motion.div>
@@ -110,7 +110,7 @@ function Main() {
               />
             </motion.div>
 
-            <motion.p variants={itemVariants} className='max-w-lg text-gray-300 text-sm lg:text-xl leading-relaxed font-mono'>
+            <motion.p variants={itemVariants} className='max-w-lg text-gray-300 text-sm lg:text-lg leading-relaxed font-mono'>
               Physics graduate with experience in <span className='text-amber-400'>web development</span>,
               currently focused on data visualization, <span className='text-amber-400'>machine learning</span>,
               and building data-driven applications.
@@ -122,7 +122,7 @@ function Main() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={openPdf}
-                className="group relative px-6 py-3 border w-40 border-yellow-500 text-yellow-500 font-bold text-md overflow-hidden transition-all duration-300"
+                className="group relative px-3 py-3 border w-30 border-yellow-500 text-yellow-500 font-bold text-sm overflow-hidden transition-all duration-300"
               >
                 <span className="relative z-10 group-hover:text-black cursor-pointer">VIEW RESUME</span>
                 <div className="absolute inset-0 bg-yellow-500 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -148,7 +148,7 @@ function Main() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="flex relative bg-[#111111]/80 backdrop-blur-sm border border-gray-600 w-6xl mx-auto mt-16 font-mono shadow-2xl cursor-auto"
+          className="flex relative bg-[#111111]/80 backdrop-blur-sm border border-gray-600 w-5xl mx-auto font-mono shadow-2xl cursor-auto"
         >
           <div className="h-8 w-8 border-t-2 border-l-2 border-yellow-500 absolute -top-1 -left-1"></div>
           <div className="h-8 w-8 border-b-2 border-r-2 border-yellow-500 absolute -right-1 -bottom-1"></div>
@@ -158,18 +158,18 @@ function Main() {
             { val: "5+", label: "projects" },
             { val: "3", label: "prog. languages" }
           ].map((item, index) => (
-            <div key={index} className={`w-full flex flex-col items-center justify-center py-7 px-4 text-center group ${index !== 2 ? 'border-r border-gray-700' : ''}`}>
-              <div className="text-4xl font-black text-yellow-400 tracking-tighter group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] transition-all duration-300">
+            <div key={index} className={`w-full flex flex-col gap-2 items-center justify-center py-7 px-4 text-center group ${index !== 2 ? 'border-r border-gray-700' : ''}`}>
+              <div className="text-3xl font-black text-yellow-400 tracking-tighter group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] transition-all duration-300">
                 {item.val}
               </div>
-              <div className="text-lg uppercase tracking-wider text-gray-300 mt-3 font-bold group-hover:text-gray-300 transition-colors">
+              <div className="text-md uppercase tracking-wider text-gray-300 font-bold group-hover:text-gray-300 transition-colors">
                 {item.label}
               </div>
             </div>
           ))}
         </motion.div>
       </div>
-    </div>
+    </section>
   )
 }
 

@@ -24,7 +24,7 @@ function Navbar() {
     ];
 
     return (
-        <nav className={`fixed top-0 flex z-50 w-full text-md transition-all duration-500 ${isScrolled ? 'h-16 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-800' : 'h-24 bg-transparent'}`}>
+        <nav className={`fixed top-0 flex z-50 w-full text-sm transition-all duration-500 ${isScrolled ? 'h-16 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-800' : 'h-24 bg-transparent'}`}>
             <div className='flex justify-between max-w-7xl w-full items-center px-6 lg:px-8 mx-auto'>
 
                 {/* Udin Text */}

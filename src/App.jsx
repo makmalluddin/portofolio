@@ -21,6 +21,7 @@ function App() {
         <Navbar />
         <Main />
         <Experience />
+
         
         <NewSkills />
         <NewProjects/>

@@ -27,6 +27,11 @@ function Experience() {
                 { image: cms3, text: 'CMS Dashboard' },
                 { image: workspace, text: 'Workspace' },
             ],
+            keyImpacts: [
+                { highlight: "+30%", text: "traffic growth" },
+                { highlight: null, text: "E-Commerce platform built" },
+                { highlight: "Website", text: "revamp done" }
+            ],
             expertise: 'React • Laravel • PostgreSQL'
         },
         {
@@ -136,7 +141,7 @@ function Experience() {
                     initial='hidden'
                     whileInView='visible'
                     viewport={{ once: true, amount: 0.6 }}
-                    className="space-y-4 mb-32 "
+                    className="flex flex-col mb-32 gap-2"
                 >
                     {experienceData.map((exp) => (
                         <ExperienceCard
@@ -170,14 +175,14 @@ function Experience() {
                 >
                     <div className='space-y-2'>
                         {certificationData.map((cert) => (
-                        <CertificationCard
-                            key={cert.id}
-                            {...cert}
-                            onHover={handleCertHover}
-                            // Kirim status apakah kartu ini yang sedang aktif
-                            isActive={activeCertId === cert.id}
-                        />
-                    ))}
+                            <CertificationCard
+                                key={cert.id}
+                                {...cert}
+                                onHover={handleCertHover}
+                                // Kirim status apakah kartu ini yang sedang aktif
+                                isActive={activeCertId === cert.id}
+                            />
+                        ))}
                     </div>
 
                     {/* Preview Area */}
