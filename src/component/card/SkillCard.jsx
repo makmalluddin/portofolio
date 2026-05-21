@@ -1,46 +1,56 @@
-import React from 'react'
-import { Icon } from "@iconify/react";
+import React, { memo } from 'react';
+import { Icon } from '@iconify/react';
 
-function SkillCard({ name, level = 3, icon, color }) {
-  // Icon Skills
-  const renderIcon = () => {
-    const props = { style : {fontSize : '40px'} };
-    switch (icon) {
-      case 'python': return <Icon icon="devicon:python" {...props} />;
-      case 'sklearn': return <Icon icon='devicon:scikitlearn' {...props} />;
-      case 'tableau': return <Icon icon='logos:tableau-icon' {...props} />;
-      case 'db': return <Icon icon='flowbite:database-solid' style={{color: '#fbbf24', fontSize: '40px'}} />;
-      case 'react': return<Icon icon='logos:react' {...props} />;
-      case 'laravel': return <Icon icon='devicon:laravel' {...props} />;
-      case 'tailwind': return <Icon icon='devicon:tailwindcss' {...props} />;
-      case 'git': return <Icon icon='devicon:git' {...props} />;
-      case 'ml': return <FaBrain {...props} />;
-      default:;
-    }
-  };
+const SkillCard = memo(({ name, icon, tag, color = 'amber', iconClass = '' }) => {
+    // Siasat: Object mapping untuk mengatur tema warna per kotak
+    // Menggunakan opacity (seperti /20 dan /50) agar serasi dengan background gelap
+    const themeMap = {
+        amber: {
+            border: "border-amber-500/20 hover:border-amber-500/60",
+            tagText: "text-amber-500/40 group-hover:text-amber-500/80",
+            iconColor: "text-amber-400", 
+            glow: "hover:shadow-[0_0_15px_rgba(245,158,11,0.15)]"
+        },
+        cyan: {
+            border: "border-cyan-500/20 hover:border-cyan-500/60",
+            tagText: "text-cyan-500/40 group-hover:text-cyan-500/80",
+            iconColor: "text-cyan-400",
+            glow: "hover:shadow-[0_0_15px_rgba(6,182,212,0.15)]"
+        },
+        violet: {
+            border: "border-violet-500/20 hover:border-violet-500/60",
+            tagText: "text-violet-500/40 group-hover:text-violet-500/80",
+            iconColor: "text-violet-400",
+            glow: "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+        }
+    };
 
-  return (
-    <div className='group flex flex-col gap-4 border border-gray-800 bg-[#0f0f0f] p-6 rounded-xl transition-all duration-500 hover:border-amber-400/50 hover:-translate-y-2 hover:shadow-[0_10px_40px_-15px_rgba(251,191,36,0.3)]'>
-      <div className='flex justify-center transition-transform duration-500 group-hover:scale-110'>
-        {renderIcon()}
-      </div>
+    const theme = themeMap[color] || themeMap.amber;
 
-      <div className='text-center font-bold text-gray-400 group-hover:text-white transition-colors text-sm'>
-        {name}
-      </div>
+    return (
+        <div 
+            className={`relative w-28 h-28 flex flex-col items-center justify-center gap-3 rounded-xl border bg-[#0a0b0d]/50 backdrop-blur-sm cursor-default transition-all duration-300 group ${theme.border} ${theme.glow} hover:bg-[#0f1115] hover:-translate-y-1`}
+        >
+            {/* Tag / Sub-category Badge di Pojok Kanan Atas */}
+            {tag && (
+                <span className={`absolute top-2 right-2 text-[9px] font-mono font-bold tracking-widest uppercase transition-colors duration-300 ${theme.tagText}`}>
+                    {tag}
+                </span>
+            )}
 
-      {/* Level Indicator */}
-      <div className='flex gap-1.5 justify-center'>
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 w-1.5 rounded-full transition-all duration-700 ${i < level ? 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.4)]' : 'bg-gray-800'
-              }`}
-          ></div>
-        ))}
-      </div>
-    </div>
-  )
-}
+            {/* Ikon Skill */}
+            {/* iconClass digunakan jika ada ikon yang warnanya perlu di-override secara spesifik dari parent */}
+            <Icon 
+                icon={icon} 
+                className={`text-4xl transition-transform duration-300 group-hover:scale-110 ${iconClass || theme.iconColor}`} 
+            />
 
-export default SkillCard
+            {/* Nama Skill */}
+            <span className="text-xs font-mono text-gray-400 group-hover:text-gray-200 transition-colors duration-300 truncate w-full text-center px-2">
+                {name}
+            </span>
+        </div>
+    );
+});
+
+export default SkillCard;

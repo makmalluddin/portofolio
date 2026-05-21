@@ -1,79 +1,88 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { memo } from 'react';
 import { Icon } from '@iconify/react';
 
-function ProjectCard({ title, description, image, link, type, tools, overlayMode = "dark" }) {
-    // Logic color overlay
-    const isDark = overlayMode === "dark";
-    const overlayBase = isDark ? "bg-black/80" : "bg-white/80";
-    const textPrimary = isDark ? "text-white" : "text-black";
-    const textSecondary = isDark ? "text-gray-400" : "text-gray-600";
+const ProjectCard = memo(({ image, title, description, tools, type, color = 'amber', onclick }) => {
+    
+    // Siasat 1: Object Mapping untuk warna aksen konstan (Amber = Data Science/ML, Cyan = Web Dev)
+    const themeMap = {
+        cyan: {
+            text: 'text-cyan-400',
+            border: 'border-cyan-500/20 hover:border-cyan-400',
+            badge: 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400',
+            glow: 'hover:shadow-[0_0_25px_rgba(6,182,212,0.15)]'
+        },
+        amber: {
+            text: 'text-amber-400',
+            border: 'border-amber-500/20 hover:border-amber-400',
+            badge: 'border-amber-500/30 bg-amber-500/10 text-amber-400',
+            glow: 'hover:shadow-[0_0_25px_rgba(245,158,11,0.15)]'
+        }
+    };
+
+    const theme = themeMap[color] || themeMap.amber;
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative w-full aspect-video overflow-hidden border border-gray-800 group cursor-pointer bg-[#111111] rounded-sm"
+        <a
+            href={onclick}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`relative w-full aspect-video overflow-hidden group cursor-pointer rounded-xl border border-gray-800/80 bg-[#0b0c10] transition-all duration-500 ${theme.border} ${theme.glow} hover:scale-[1.015] will-change-transform block`}
         >
-            {/* Image Project */}
+            {/* Visual Guard: Gradient hitam permanen di bawah agar judul SELALU terbaca jelas sebelum di-hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:opacity-0" />
+
+            {/* Gambar Background dengan Efek Zoom Lambat saat Hover */}
             <img
-                src={image}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                src={image}
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
+                loading="lazy"
             />
 
-            {/* Overlay Hover */}
-            <div className={`absolute inset-0 ${overlayBase} opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-between p-6`}>
-
-                <div className="flex justify-between items-start">
-                    <span className={`font-mono text-[10px] tracking-widest uppercase py-1 px-2 border ${isDark ? 'border-gray-700' : 'border-gray-300'} ${textPrimary}`}>
-                        {type}
-                    </span>
-                    <div className="flex gap-2">
-                        {tools.map((tool, index) => (
-                            <span key={index} className={`text-[10px] font-bold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
-                                #{tool}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    className="space-y-2"
-                >
-                    <h3 className={`text-xl font-bold uppercase tracking-tighter ${textPrimary}`}>
+            {/* Sliding Overlay Content (Menarik informasi dari bawah card) */}
+            <div 
+                className="absolute bottom-0 left-0 w-full z-20 p-4 flex flex-col gap-3 h-fit 
+                bg-gradient-to-t from-black via-[#0d0f14]/98 to-[#0d0f14]/95 backdrop-blur-md border-t border-gray-800/40
+                /* Siasat Utama: Didorong ke bawah, menyisakan tinggi container judul (~3.5rem) */
+                translate-y-[calc(100%-3.5rem)] group-hover:translate-y-0 
+                transition-transform duration-500 ease-out"
+            >
+                {/* Header Area: Judul Proyek Terkunci di h-8 agar tidak memicu bug posisi */}
+                <div className="h-8 flex items-center">
+                    <h3 className="text-white text-base md:text-lg font-bold tracking-wide truncate w-full">
                         {title}
                     </h3>
-                    <p className={`text-xs leading-relaxed line-clamp-2 font-mono ${textSecondary}`}>
-                        {description}
-                    </p>
-                </motion.div>
+                </div>
 
-                <div className="flex justify-end">
-                    <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center gap-2 font-mono text-[10px] font-bold px-4 py-2 transition-all 
-                            ${isDark ? 'bg-white text-black hover:bg-amber-400' : 'bg-black text-white hover:bg-amber-600'}`}
-                    >
-                        VIEW DETAIlS
-                        <Icon icon="solar:arrow-right-up-linear" />
-                    </a>
+                {/* Deskripsi Proyek: Fade-In dengan sedikit jeda (delay) agar transisi terasa smooth */}
+                <p className="text-gray-400 text-xs md:text-sm font-mono leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 line-clamp-3">
+                    {description}
+                </p>
+
+                {/* Footer Area: Tech Stack & Project Type Badge */}
+                <div className="flex items-center justify-between pt-2.5 border-t border-gray-800/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    
+                    {/* Siasat 3: List Tech Stack dengan perbaikan Unique Key */}
+                    <div className="flex flex-wrap gap-2">
+                        {tools && tools.map((item, index) => (
+                            <div 
+                                key={index} 
+                                className={`border px-2 py-0.5 flex rounded-md items-center justify-center gap-1.5 bg-gray-950/40 ${theme.border} ${theme.text}`}
+                            >
+                                <Icon icon={item.icon} className="text-xs md:text-sm flex-none" />
+                                <span className="text-[10px] md:text-xs font-mono font-medium tracking-wide">{item.name}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Badge Tipe Proyek (e.g., DS, ML, Web) */}
+                    <div className={`border px-2 py-0.5 rounded-md text-[10px] md:text-xs font-mono font-bold tracking-wider uppercase flex-none ${theme.badge}`}>
+                        {type}
+                    </div>
                 </div>
             </div>
-
-            {/* Static Title */}
-            <div className="absolute bottom-4 left-4 group-hover:opacity-0 transition-opacity duration-300">
-                <h4 className="text-white text-[10px] font-mono bg-black/50 px-2 py-1 backdrop-blur-sm border-l-2 border-amber-400">
-                    {title}
-                </h4>
-            </div>
-        </motion.div>
+        </a>
     );
-}
+});
 
 export default ProjectCard;

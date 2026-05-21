@@ -1,190 +1,143 @@
-import React from 'react'
-import MainLayout from '../layout/MainLayout'
-import SkillCard from '../component/card/SkillCard'
-import MiniSkills from '../component/card/MiniSkills'
-import { motion } from 'motion/react'
-import avatar from '../assets/myself/avatar.webp'
+import React from 'react';
+import SkillCard from '../component/card/SkillCard'; // Sesuaikan path dengan lokasi SkillCard yang baru
+import MainLayout from '../layout/MainLayout';
+import { motion } from "motion/react";
 
-function Skills() {
-  const softSkills = [
-    { name: "Problem Solver", top: "10%", left: "15%" },
-    { name: "Analytical Thinking", top: "75%", left: "10%" },
-    { name: "Teamwork", top: "20%", left: "75%" },
-    { name: "Fast Learner", top: "80%", left: "65%" },
-    { name: "Time Management", top: "45%", left: "5%" },
-    { name: "Leadership", top: "50%", left: "80%" },
-  ];
+const Skills = () => {
+  // 1. Data Diratakan (Flattened Data)
+  // Sub-kategori sekarang menjadi 'tag' di sudut kanan kotak
+  const skillsData = {
+    dataScience: [
+      { name: "Scikit-learn", icon: "devicon:scikitlearn", tag: "ML" },
+      { name: "TensorFlow", icon: "logos:tensorflow", tag: "ML" },
+      { name: "Python", icon: "material-icon-theme:python", tag: "DP" },
+      { name: "Pandas", icon: "devicon:pandas", tag: "DP" },
+      { name: "Numpy", icon: "devicon:numpy", tag: "DP" },
+      { name: "Tableau", icon: "logos:tableau-icon", tag: "DV" },
+      { name: "Matplotlib", icon: "devicon:matplotlib", tag: "DV" },
+    ],
+    webDev: [
+      { name: "React", icon: "devicon:react", tag: "FE" },
+      { name: "Vite", icon: "material-icon-theme:vite", tag: "FE" },
+      { name: "Tailwind", icon: "devicon:tailwindcss", tag: "FE" },
+      { name: "Laravel", icon: "devicon:laravel", tag: "BE" },
+      { name: "Spring Boot", icon: "bxl:spring-boot", tag: "BE", iconClass: 'text-[#6CB52D]' },
+      { name: "PostgreSQL", icon: "logos:postgresql", tag: "DB" },
+      { name: "MySQL", icon: "lineicons:mysql", tag: "DB" },
+      { name: "Git", icon: "logos:git-icon", tag: "TL" },
+    ],
+    toolsOther: [
+      { name: "Figma", icon: "devicon:figma", tag: "DS" },
+      { name: "Autocad", icon: "simple-icons:autocad", tag: "DS" },
+      { name: "Draw.io", icon: "material-icon-theme:drawio", tag: "DS" },
+      { name: "Linux", icon: "devicon:linux", tag: "DV" }, // Mengganti Fedora ke Linux umum (sesuai profil)
+      { name: "Arduino", icon: "skill-icons:arduino", tag: "IOT" },
+      { name: "ESP", icon: "simple-icons:espressif", tag: "IOT", iconClass: 'text-[#E8362D]' },
+      { name: "Tinkercad", icon: "simple-icons:tinkercad", tag: "IOT" },
+      { name: "Kicad", icon: "file-icons:kicad", tag: "IOT", iconClass: 'text-[#2D4BB1]' }
+    ]
+  };
 
-  const techStack1 = [
-    { name: 'Python', level: '5', icon: 'python', color:'text-[#3776AB]' },
-    { name: 'Scikit-Learn', level: '4', icon: 'sklearn' },
-    { name: 'Tableau', level: '4', icon: 'tableau' },
-    { name: 'MySql', level: '4', icon: 'db' },
-
-  ]
-  const techStack2 = [
-    { name: 'React', level: '4', icon: 'react' },
-    { name: 'Laravel', level: '2', icon: 'laravel' },
-    { name: 'Tailwind', level: '4', icon: 'tailwind' },
-    { name: 'PostgreSQL', level: '3', icon: 'db' },
-    { name: 'Git', level: '4', icon: 'git' }
-  ]
-
-  const tools = [
-    { name: 'Javascript', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-    { name: 'Java', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-    { name: 'VS Code', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
-    { name: 'Kicad', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
-    { name: 'Autocad', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
-    { name: 'Figma', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
-    { name: 'LTSpice', textCol: 'text-cyan-500', borderCol:'border-cyan-400', bgCol:'bg-cyan-500/4' },
-    { name: 'Fedora', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-    { name: 'Debian', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-    { name: 'Pandas', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-    { name: 'Matplotlib', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-    { name: 'Draw.io', textCol: 'text-amber-500', borderCol:'border-amber-400', bgCol:'bg-amber-500/4' },
-  ]
-
-  const title = {
+  // 2. Varian Animasi Framer Motion
+  const titleVariant = {
     hidden: { opacity: 0, x: 30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6, ease: "easeOut"
-      }
-    }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const centerImageVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
-  const leftEntrance = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { staggerChildren: 0.4, duration: 0.8, ease: "easeOut" }
-    }
-  };
-
-  const containerVariants = {
+  const containerVariant = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
+      transition: { staggerChildren: 0.05 } // Efek pop-up beruntun
     }
   };
 
-  const itemVariants = {
+  const itemVariant = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
+
+  // 3. Komponen Bantuan untuk Sub-Title Kategori
+  const CategoryHeader = ({ title, textColor }) => (
+    <div className="flex items-center gap-4 mb-6 mt-8 w-full">
+      <h3 className={`font-mono text-sm tracking-[0.2em] uppercase ${textColor}`}>
+        {title}
+      </h3>
+      <div className="h-[1px] flex-1 bg-gray-800/60"></div>
+    </div>
+  );
 
   return (
-    <section id='skills' className='scroll-mt-25 min-h-screen text-white bg-transparent my-30' >
+    <section id="skills" className="py-20 bg-transparent min-h-screen">
       <MainLayout>
-        {/* Section Title */}
+
+        {/* Main Section Title */}
         <motion.div
-          variants={title}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.9 }}
-          className='flex items-center mb-10'
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center mb-5"
         >
-          <div className="grow h-px bg-gray-800"></div>
-          <span className="mx-6 text-amber-400 font-mono text-lg italic">03. skills</span>
-          <div className="grow h-px bg-gray-800"></div>
+          <h2 className="text-2xl md:text-4xl font-black tracking-tight uppercase">
+            <span className="text-cyan-500">Core</span> Skills
+          </h2>
         </motion.div>
 
-        {/* Data Skills */}
-        <div className='flex flex-col gap-16 text-left'>
+        <div className="flex flex-col w-full max-w-5xl mx-auto">
+
+          {/* ================= BARIS 1: DATA SCIENCE ================= */}
+          <CategoryHeader title="Data Science" textColor="text-amber-500" />
           <motion.div
-            variants={containerVariants}
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.5 }}
-            className='space-y-8'
-          >
-            <motion.div variants={itemVariants} className='text-amber-400 font-mono'>
-              {'[ Data Science ]'}
-            </motion.div>
-
-            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6'>
-              {techStack1.map((items, index) => (
-                <motion.div
-                  variants={itemVariants}
-                >
-                  <SkillCard {...items} />
-                </motion.div>
-              ))}
-            </div>
-
-          </motion.div>
-
-          {/* IT Skills */}
-          <motion.div
-            variants={containerVariants}
-            initial='hidden'
-            whileInView='visible'
-            viewport={{ once: true, amount: 0.5 }}
-            className='space-y-8'
-          >
-            <motion.div variants={itemVariants} className='text-amber-400 font-mono'>
-              {'[ Tech Stack ]'}
-            </motion.div>
-
-            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6'>
-              {techStack2.map((items, index) => (
-                <motion.div
-                  variants={itemVariants}
-                >
-                  <SkillCard {...items} />
-                </motion.div>
-              ))}
-            </div>
-
-          </motion.div>
-          {/* Tools & Others */}
-          <motion.div
-            variants={containerVariants}
+            variants={containerVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className='space-y-6'
+            viewport={{ once: true, margin: "-50px" }}
+            // Siasat Inti: flex-wrap dan justify-center untuk meratakan kotak ke tengah
+            className="flex flex-wrap justify-center gap-4 w-full"
           >
-            <motion.div variants={itemVariants} className='text-amber-400 font-mono'>
-              {'// tools_&_environment'}
-            </motion.div>
-
-            <motion.div variants={containerVariants } className='flex flex-wrap gap-3'>
-              {tools.map((items, index) => (
-                <motion.div variants={itemVariants}>
-                  <MiniSkills {...items} />
-                </motion.div>
-              ))}
-            </motion.div>
+            {skillsData.dataScience.map((skill, index) => (
+              <motion.div key={index} variants={itemVariant}>
+                <SkillCard {...skill} color="amber" />
+              </motion.div>
+            ))}
           </motion.div>
+
+          {/* ================= BARIS 2: WEB DEVELOPMENT ================= */}
+          <CategoryHeader title="Web Development" textColor="text-cyan-500" />
+          <motion.div
+            variants={containerVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex flex-wrap justify-center gap-4 w-full"
+          >
+            {skillsData.webDev.map((skill, index) => (
+              <motion.div key={index} variants={itemVariant}>
+                <SkillCard {...skill} color="cyan" />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* ================= BARIS 3: TOOLS & OTHER ================= */}
+          <CategoryHeader title="Tools & Other" textColor="text-violet-500" />
+          <motion.div
+            variants={containerVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex flex-wrap justify-center gap-4 w-full"
+          >
+            {skillsData.toolsOther.map((skill, index) => (
+              <motion.div key={index} variants={itemVariant}>
+                <SkillCard {...skill} color="violet" />
+              </motion.div>
+            ))}
+          </motion.div>
+
         </div>
       </MainLayout>
-    </section >
-  )
-}
+    </section>
+  );
+};
 
-export default Skills
+export default Skills;

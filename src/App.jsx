@@ -23,7 +23,7 @@ function App() {
         <Experience />
 
         
-        <NewSkills />
+        <Skills />
         <NewProjects/>
 
         <Contact />
