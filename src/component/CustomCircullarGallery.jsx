@@ -162,7 +162,7 @@ export default function CustomCircularGallery({
             {item.text && (
               <div 
                 style={{ font: font, color: textColor }}
-                className="h-[18%] flex items-center justify-center bg-[#0d0d0d] text-center border-t border-gray-950 px-2 tracking-wide text-xs"
+                className="h-[18%] flex items-center justify-center bg-[#0d0d0d] text-center border-t border-gray-950 px-2 text-xs"
               >
                 {item.text}
               </div>

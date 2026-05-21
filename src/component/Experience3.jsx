@@ -1,4 +1,6 @@
 import React from 'react'
+
+// Dokumentasi SG8 Group
 import presentation3 from '/src/assets/myself/experience/sg8group/presentation.webp'
 import cms3 from '/src/assets/myself/experience/sg8group/cms.webp'
 import coding3 from '/src/assets/myself/experience/sg8group/coding.webp'

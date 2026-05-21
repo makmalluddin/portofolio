@@ -101,7 +101,7 @@ function Main() {
             <motion.div variants={itemVariants} className='text-2xl font-mono text-amber-300 h-8 flex items-center justify-center md:justify-start'>
               <Typewriter
                 options={{
-                  strings: ['Data Scientist', 'IT Engineer'],
+                  strings: ['Data Scientist', 'AI Engineer'],
                   autoStart: true,
                   loop: true,
                   delay: 75,

@@ -1,5 +1,6 @@
 import React from 'react'
-// indomega
+
+// Dokumentasi Indomega
 import ais_rec from '/src/assets/myself/experience/indomega/ais_receiver.webp'
 import analytics from '/src/assets/myself/experience/indomega/analytics.webp'
 import presentation from '/src/assets/myself/experience/indomega/code_presentation.webp'

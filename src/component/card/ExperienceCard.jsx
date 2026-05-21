@@ -1,183 +1,174 @@
-import React, { memo } from 'react';
-import CustomCircularGallery from '../CustomCircullarGallery';
-import { Icon } from "@iconify/react";
+import React, { useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Icon } from '@iconify/react';
 
-const ExperienceCard = memo(({ 
-  job, 
-  color = 'amber', 
-  company, 
-  date, 
-  details = [], 
-  expertise, 
-  type, 
-  onClick, 
-  isActive, 
-  images = [],
-  keyImpacts = [], 
-  docsLink = "#" 
+const ExperienceCard = ({
+    id,
+    position,
+    isActive,
+    onClick,
+    role,
+    company,
+    date,
+    type,
+    stack,
+    color = 'amber',
+    descriptions = [],
+    documentations = []
 }) => {
+    const isLeft = position === 'left';
+    const carouselRef = useRef(null);
 
-  const colorVariants = {
-    amber: "bg-amber-400/80 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.4)]",
-    cyan: "bg-cyan-400/80 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]",
-  };
+    const theme = {
+        amber: {
+            text: 'text-amber-500',
+            textHover: 'text-amber-400',
+            bg: 'bg-amber-500',
+            bgLight: 'bg-amber-500/10',
+            border: 'border-amber-500/50',
+            glow: 'shadow-[0_0_15px_rgba(245,158,11,0.5)]',
+            bullet: 'text-amber-500'
+        },
+        cyan: {
+            text: 'text-cyan-500',
+            textHover: 'text-cyan-400',
+            bg: 'bg-cyan-500',
+            bgLight: 'bg-cyan-500/10',
+            border: 'border-cyan-500/50',
+            glow: 'shadow-[0_0_15px_rgba(6,182,212,0.5)]',
+            bullet: 'text-cyan-500'
+        }
+    }[color] || theme.amber;
 
-  const borderVariants = {
-    amber: "border-gray-800 bg-transparent text-gray-600",
-    cyan: "border-gray-800 bg-transparent text-gray-600",
-  };
-
-  const textVariants = {
-    amber: "text-amber-400",
-    cyan: "text-cyan-400",
-  };
-
-  const ringVariants = {
-    amber: "border-amber-400/40",
-    cyan: "border-cyan-400/40"
-  };
-
-  return (
-    <div className="flex w-full gap-4 relative group">
-      
-      {/* ================= PART 1: TIMELINE COLUMN (OUTSIDE CARD) ================= */}
-      <div className="flex flex-col items-center w-12 flex-none relative">
-        {/* Garis vertikal kontinu yang menghubungkan antar kartu */}
-        <div className="absolute top-0 bottom-0 w-[2px] bg-gray-800/90 left-1/2 -translate-x-1/2 z-0"></div>
-        
-        {/* Node Lingkaran Indikator */}
-        <div 
-          onClick={onClick}
-          className="relative z-10 mt-6 cursor-pointer flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-        >
-          {isActive ? (
-            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center bg-[#0d0e12] ${textVariants[color]} ${ringVariants[color]}`}>
-              <div className={`w-2 h-2 rounded-full ${colorVariants[color].split(' ')[0]} transition-all duration-300`}></div>
-            </div>
-          ) : (
-            <div className="w-4 h-4 rounded-full border-2 border-gray-700 bg-[#0d0e12] transition-colors group-hover:border-gray-500"></div>
-          )}
-        </div>
-      </div>
-
-      {/* ================= PART 2: MAIN CARD CONTAINER ================= */}
-      <div className="flex-1 flex flex-col">
-        <div
-          onClick={onClick}
-          className={`grid grid-cols-1 lg:grid-cols-10 w-full rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden
-            ${isActive
-              ? `bg-[#0f1115]/90 border-gray-800 backdrop-blur-xl shadow-2xl shadow-black/80`
-              : `bg-[#0d0e12]/40 border-gray-700 hover:bg-[#0f1115]/50 hover:border-gray-500`
-            }`}
-          style={{
-            boxShadow: isActive
-              ? '0 25px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)'
-              : 'none'
-          }}
-        >
-          {/* LEFT PANEL: DESCRIPTION UI (60% Width on Large Screens) */}
-          <div className="lg:col-span-6 flex flex-col gap-4 text-left p-6 border-b lg:border-b-0 lg:border-r border-gray-900/60 justify-between">
-            <div className="space-y-1">
-              <h3 className={`text-2xl font-bold tracking-wide transition-colors duration-300 ${isActive ? 'text-white' : 'text-gray-400 group-hover:text-white/90'}`}>
-                {job}
-              </h3>
-              <div className={`text-md font-bold tracking-wider font-mono ${textVariants[color]}`}>
-                {company}
-              </div>
-              <div className="text-gray-400 text-xs font-mono uppercase tracking-widest pt-1">
-                {date}
-              </div>
-            </div>
-
-            {/* Bullet Points Deskripsi Kerja */}
-            <ul className="space-y-3 my-2 text-gray-400 text-sm list-none pl-0">
-              {details.map((item, index) => (
-                <li key={index} className="flex items-start gap-2 text-gray-400/90 leading-relaxed">
-                  <Icon 
-                    icon="material-symbols:play-arrow-rounded" 
-                    className={`text-xl flex-none mt-0.5 ${textVariants[color]} opacity-70`} 
-                  />
-                  <span>{item.text}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Tech Stack Footer */}
-            <div className="flex flex-wrap gap-2 pt-2 text-sm font-mono font-medium text-gray-400">
-              {expertise}
-            </div>
-          </div>
-
-          {/* RIGHT PANEL: KEY IMPACTS & CTA (40% Width on Large Screens) */}
-          <div className="lg:col-span-4 flex flex-col p-6 bg-[#090a0d]/40 justify-between gap-6">
-            {/* Badge Status Pekerjaan */}
-            <div className={`w-full py-2 px-4 border rounded-md text-center text-xs tracking-[0.2em] uppercase font-mono transition-all duration-300
-              ${isActive ? `${textVariants[color]} border-gray-800 bg-gray-950/40` : 'border-gray-900 text-gray-600'}`}
+    return (
+        // Siasat 1 & 2: Menggunakan py-3 (padding) tanpa margin agar garis timeline tidak putus
+        <div className="relative w-full flex flex-col md:flex-row items-center justify-center py-3 group">
+            
+            {/* ================= TIMELINE CENTER ================= */}
+            {/* Garis vertikal membentang penuh 100% tinggi kontainer (bersentuhan antar kartu) */}
+            <div className={`hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gray-800 -translate-x-1/2 z-0 transition-opacity duration-300 ${isActive ? 'opacity-0' : 'opacity-100'}`}></div>
+            
+            <div 
+                className={`hidden md:flex absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-5 h-5 rounded-full border-2 transition-all duration-500 items-center justify-center
+                ${isActive ? `${theme.border} bg-[#111] scale-125 ${theme.glow}` : 'border-gray-600 bg-[#111] group-hover:border-gray-400'}`}
             >
-              {type || 'Intern'}
+                {isActive && <div className={`w-2 h-2 ${theme.bg} rounded-full`}></div>}
             </div>
 
-            {/* Modul Ringkasan Dampak Kerja (Key Impact) */}
-            <div className="flex-1 flex flex-col gap-2">
-              <span className="text-gray-700 text-xs font-mono tracking-wider block mb-1">// key impact</span>
-              {keyImpacts.length > 0 ? (
-                keyImpacts.map((impact, idx) => (
-                  <div 
-                    key={idx} 
-                    className="w-full border border-gray-900/60 bg-[#0d0e12]/40 rounded-lg p-3 text-xs font-mono flex items-center text-gray-500 tracking-wide"
-                  >
-                    {impact.highlight && (
-                      <span className={`font-bold mr-2 text-sm ${textVariants[color]}`}>
-                        {impact.highlight}
-                      </span>
+            {/* ================= MAIN CARD CONTAINER ================= */}
+            <div 
+                className={`w-full md:w-1/2 flex relative z-10 
+                ${isLeft ? 'md:pr-12 md:justify-end' : 'md:pl-12 md:justify-start md:order-2'}`}
+            >
+                <motion.div
+                    onClick={onClick}
+                    layout
+                    initial={{ scale: 1, rotate: 0 }}
+                    animate={{ 
+                        scale: isActive ? 1.05 : 1, 
+                        rotate: isActive ? (isLeft ? -2 : 2) : 0, 
+                        zIndex: isActive ? 50 : 10
+                    }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    // Card dibuat lebih compact (p-5 dari p-6)
+                    className={`w-full max-w-md p-5 rounded-2xl border cursor-pointer backdrop-blur-sm transition-colors duration-300
+                        ${isActive 
+                            ? `bg-[#1a1a1a]/90 ${theme.border} shadow-2xl shadow-black/80` 
+                            : 'bg-[#111111]/80 border-gray-800 hover:bg-[#151515]/90 hover:border-gray-700'
+                        }`}
+                >
+                    <div className="flex justify-between items-start mb-3">
+                        <div className={`text-[10px] font-mono tracking-[0.2em] uppercase ${theme.text} border ${theme.border} ${theme.bgLight} px-2 py-1 rounded`}>
+                            {type}
+                        </div>
+                        <div className="text-[11px] font-mono text-gray-500 mt-1">
+                            {date}
+                        </div>
+                    </div>
+                    
+                    <h3 className={`text-lg font-bold tracking-tight mb-1 transition-colors ${isActive ? 'text-white' : 'text-gray-300'}`}>
+                        {role}
+                    </h3>
+                    <div className={`text-sm font-mono ${theme.textHover} opacity-90 mb-4`}>
+                        {company}
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-800/60">
+                        {stack.map((tech, idx) => (
+                            <span key={idx} className="text-[10px] font-mono text-gray-400 bg-gray-900 px-2 py-1 rounded">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* ================= CROSS-EXPANSION (OPPOSITE SIDE) ================= */}
+            <div 
+                className={`w-full md:w-1/2 flex flex-col mt-6 md:mt-0 relative z-10
+                ${isLeft ? 'md:pl-12 md:justify-start md:order-2' : 'md:pr-12 md:justify-end'}`}
+            >
+                <AnimatePresence>
+                    {isActive && (
+                        <motion.div
+                            initial={{ opacity: 0, x: isLeft ? -30 : 30, filter: 'blur(5px)' }}
+                            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                            exit={{ opacity: 0, x: isLeft ? -10 : 10, filter: 'blur(2px)' }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                            className="w-full max-w-md flex flex-col gap-5"
+                        >
+                            {/* Bullet Points Deskripsi */}
+                            <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl shadow-xl">
+                                <h4 className="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-3">// key_responsibilities</h4>
+                                <ul className="space-y-2.5">
+                                    {descriptions.map((desc, idx) => (
+                                        <li key={idx} className="flex items-start gap-2 text-sm text-gray-300 leading-relaxed font-mono">
+                                            <Icon icon="mdi:chevron-right" className={`${theme.bullet} text-lg flex-none mt-0.5`} />
+                                            <span>{desc}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Dokumentasi Carousel Kaca */}
+                            {documentations.length > 0 && (
+                                <div className="flex flex-col">
+                                    <h4 className="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2">// documentation</h4>
+                                    
+                                    <div ref={carouselRef} className="w-full overflow-hidden cursor-grab active:cursor-grabbing pb-2">
+                                        <motion.div 
+                                            drag="x" 
+                                            dragConstraints={carouselRef} 
+                                            className="flex gap-4 w-max"
+                                        >
+                                            {documentations.map((doc, idx) => (
+                                                <motion.div 
+                                                    key={idx}
+                                                    whileHover={{ y: -5 }}
+                                                    className="w-40 flex-none flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg overflow-hidden shadow-lg relative"
+                                                >
+                                                    <img 
+                                                        src={doc.image} 
+                                                        alt={doc.title} 
+                                                        className="w-full h-24 object-cover pointer-events-none opacity-80" 
+                                                    />
+                                                    <div className="p-2 bg-gradient-to-t from-black/90 to-transparent absolute bottom-0 w-full">
+                                                        <span className="text-[10px] font-mono text-white truncate block">
+                                                            {doc.title}
+                                                        </span>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </motion.div>
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
                     )}
-                    <span>{impact.text}</span>
-                  </div>
-                ))
-              ) : (
-                <div className="text-gray-700 text-xs italic font-mono p-4 border border-dashed border-gray-900 rounded-lg text-center">
-                  No impacts recorded
-                </div>
-              )}
+                </AnimatePresence>
             </div>
-
-            {/* Tombol Aksi Dokumentasi (Hanya menyala ketika Aktif) */}
-            <a
-              href={docsLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()} // Mencegah benturan event klik dengan penutupan kartu
-              className={`w-full py-2.5 px-4 border rounded-md text-center text-xs font-mono tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2
-                ${isActive 
-                  ? `border-gray-800 bg-[#0d0e12] text-gray-400 hover:text-white hover:border-gray-600` 
-                  : 'border-transparent text-transparent pointer-events-none opacity-0'
-                }`}
-            >
-              <span>view docs</span>
-              <Icon icon="solar:arrow-up-linear" className="rotate-45 text-sm" />
-            </a>
-          </div>
         </div>
-
-        {/* Galeri Foto Sektor Bawah (Membuka secara akordeon) */}
-        {isActive && images.length > 0 && (
-          <div 
-            className="ml-0 lg:ml-4 mt-4 border border-gray-800/80 rounded-xl bg-[#0a0b0d] overflow-hidden shadow-inner"
-            style={{ height: '380px', position: 'relative' }}
-          >
-            <CustomCircularGallery
-              items={images}
-              bend={0}
-              borderRadius={12}
-              scrollSpeed={2}
-              scrollEase={0.05}
-            />
-          </div>
-        )}
-      </div>
-
-    </div>
-  );
-});
+    );
+};
 
 export default ExperienceCard;
